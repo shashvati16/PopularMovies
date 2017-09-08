@@ -1,0 +1,12 @@
+<android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnWidth="@dimen/column_width"
+    android:numColumns="auto_fit"
+    android:verticalSpacing="@dimen/zero_spacing"
+    android:horizontalSpacing="@dimen/zero_spacing"
+    android:stretchMode="columnWidth"
+    android:id="@+id/movies_grid"
+    tools:context=".MainActivity"/>

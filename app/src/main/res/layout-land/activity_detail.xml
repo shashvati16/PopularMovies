@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/landscape_title_dimension"
+        android:id="@+id/movie_title_text"
+        android:background="@color/titleBackground"
+        android:textSize="@dimen/title_size"
+        android:gravity="center"
+        android:textColor="@color/titleText"
+        tools:text="Beauty And The Beast"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/movie_thumbnail"
+            android:layout_width="@dimen/movie_detail_image"
+            android:layout_height="@dimen/movie_detail_image"
+            android:adjustViewBounds="true"
+            tools:src="@mipmap/thumbnail_image"
+            android:paddingTop="@dimen/landscape_small_margin"
+            android:paddingLeft="@dimen/landscape_medium_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            tools:text="2017"
+            android:layout_marginBottom="@dimen/landscape_medium_margin"
+            app:layout_constraintLeft_toRightOf="@+id/movie_thumbnail"
+            android:layout_marginRight="@dimen/landscape_medium_margin"
+            app:layout_constraintRight_toLeftOf="@+id/trailer_list"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/landscape_small_margin"
+            app:layout_constraintHorizontal_bias="0.3"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_rating"
+            android:textSize="@dimen/small_text"
+            tools:text="6.9/10"
+            android:layout_marginBottom="@dimen/landscape_medium_margin"
+            android:layout_marginRight="@dimen/landscape_small_margin"
+            app:layout_constraintRight_toLeftOf="@+id/trailer_list"
+            app:layout_constraintLeft_toRightOf="@+id/movie_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/release_date"
+            app:layout_constraintHorizontal_bias="0.3"/>
+        <TextView
+            android:id="@+id/movie_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reviews"
+            app:layout_constraintLeft_toRightOf="@+id/movie_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/user_rating"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintRight_toLeftOf="@+id/trailer_list"
+            android:textSize="@dimen/text_size"
+            android:layout_marginBottom="@dimen/landscape_small_margin"
+            android:layout_marginRight="@dimen/landscape_medium_margin"/>
+
+        <ToggleButton
+            android:id="@+id/favourite_btn"
+            android:layout_width="@dimen/btn_width_landscape"
+            android:layout_height="wrap_content"
+            android:background="@color/btn_color"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/mark_favourite"
+            android:textColor="@color/btn_text_color"
+            android:textSize="@dimen/small_text"
+            android:textOn="FAVORITE"
+            android:textOff="MARK AS FAVORITE"
+            app:layout_constraintLeft_toRightOf="@+id/movie_thumbnail"
+            android:layout_marginBottom="@dimen/landscape_small_margin"
+            android:layout_marginRight="@dimen/landscape_medium_margin"
+            android:layout_marginTop="@dimen/landscape_small_margin"
+            app:layout_constraintRight_toLeftOf="@+id/trailer_list"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintTop_toBottomOf="@+id/movie_reviews"/>
+        <TextView
+            android:id="@+id/trailer_title"
+            android:textSize="@dimen/medium_text"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:text="@string/trailer_title"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/landscape_small_margin"
+            android:paddingRight="@dimen/landscape_title_margin"
+            app:layout_constraintLeft_toRightOf="@+id/release_date"
+            app:layout_constraintBottom_toTopOf="@+id/trailer_list"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+        <ListView
+            android:id="@+id/trailer_list"
+            android:textSize="@dimen/text_size1"
+            android:layout_width="@dimen/listview_width"
+            android:layout_height="@dimen/listview_height"
+            android:paddingTop="@dimen/landscape_small_margin"
+            android:paddingRight="@dimen/landscape_medium_margin"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/movie_plot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_text"
+        tools:text="A live-action adaptation of Disney's version of the classic 'Beauty and the Beast' tale of a cursed prince and a beautiful young woman who helps him break the spell."
+        android:paddingTop="@dimen/landscape_large_margin"
+        android:paddingLeft="@dimen/landscape_medium_margin"/>
+</LinearLayout>
+
+
+
+
+
