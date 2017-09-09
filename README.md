@@ -11,7 +11,8 @@ Once you have obtained your `API KEY`, just copy the key into the API_KEY field 
 - Picasso
 
 ### License
-`Copyright (C) 2017  Shashvati Dash - Popular Movies Project for Udacity Android Nanodegree
+```
+Copyright (C) 2017  Shashvati Dash - Popular Movies Project for Udacity Android Nanodegree
     
       Licensed under the Apache License, Version 2.0 (the "License");
       you may not use this file except in compliance with the License.
@@ -23,4 +24,5 @@ Once you have obtained your `API KEY`, just copy the key into the API_KEY field 
       distributed under the License is distributed on an "AS IS" BASIS,
       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
       See the License for the specific language governing permissions and
-      limitations under the License.`
+      limitations under the License.
+```
