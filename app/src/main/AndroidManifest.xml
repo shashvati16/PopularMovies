@@ -39,9 +39,10 @@
         <activity android:name=".FavoritesActivity"
             android:label="@string/user_favorites"/>
 
+
         <provider
-            android:name="com.example.android.PopularMovies.Data.MovieFavoriteProvider"
-            android:authorities="com.example.android.PopularMovies"
+            android:authorities="com.example.android.PopularMovies.Data.FavoriteProvider"
+            android:name="com.example.android.PopularMovies.Data.generated.FavoriteProvider"
             android:exported="false"/>
 
     </application>

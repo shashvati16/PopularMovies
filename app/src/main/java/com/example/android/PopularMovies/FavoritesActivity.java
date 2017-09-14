@@ -11,7 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.android.PopularMovies.Data.MovieFavoriteContract;
+import com.example.android.PopularMovies.Data.FavoriteProvider;
+import com.example.android.PopularMovies.Data.MoviesDatabase;
 
 public class FavoritesActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG=FavoritesActivity.class.getSimpleName();
@@ -49,11 +50,11 @@ public class FavoritesActivity extends AppCompatActivity implements LoaderManage
             @Override
             public Cursor loadInBackground() {
                 try {
-                    return getContentResolver().query(MovieFavoriteContract.MovieEntry.CONTENT_URI,
+                    return getContentResolver().query(FavoriteProvider.Movie.MOVIES,
                             null,
                             null,
                             null,
-                            MovieFavoriteContract.MovieEntry.COLUMN_MOVIE_ID);
+                            MoviesDatabase.MovieColumns.COLUMN_MOVIE_ID);
                 } catch (Exception e) {
                     Log.e(TAG, "Failed to asynchronously load data.");
                     e.printStackTrace();

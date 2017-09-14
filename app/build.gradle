@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'android-apt'
+apt {
+    arguments {
+        schematicOutPackage 'com.example.PopularMovies.'
+    }
+}
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -32,4 +37,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    apt 'net.simonvt.schematic:schematic-compiler:0.6.3'
+    compile 'net.simonvt.schematic:schematic:0.6.3'
+
 }

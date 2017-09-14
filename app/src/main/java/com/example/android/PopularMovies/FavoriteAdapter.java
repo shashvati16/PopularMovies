@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.PopularMovies.Data.MovieFavoriteContract;
+import com.example.android.PopularMovies.Data.MoviesDatabase;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -36,9 +36,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public void onBindViewHolder(FavoriteViewHolder holder, int position) {
 
         // Indices for the _id, description, and priority columns
-        int idIndex = mCursor.getColumnIndex(MovieFavoriteContract.MovieEntry.COLUMN_MOVIE_ID);
-        int titleIndex = mCursor.getColumnIndex(MovieFavoriteContract.MovieEntry.COLUMN_MOVIE_TITLE);
-        int posterIndex = mCursor.getColumnIndex(MovieFavoriteContract.MovieEntry.COLUMN_POSTER_PATH);
+        int idIndex = mCursor.getColumnIndex(MoviesDatabase.MovieColumns.COLUMN_MOVIE_ID);
+        int titleIndex = mCursor.getColumnIndex(MoviesDatabase.MovieColumns.COLUMN_MOVIE_TITLE);
+        int posterIndex = mCursor.getColumnIndex(MoviesDatabase.MovieColumns.COLUMN_POSTER_PATH);
 
         mCursor.moveToPosition(position); // get to the right location in the cursor
 

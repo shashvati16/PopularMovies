@@ -19,7 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.example.android.PopularMovies.Data.MovieFavoriteContract;
+import com.example.android.PopularMovies.Data.FavoriteProvider;
+import com.example.android.PopularMovies.Data.MoviesDatabase;
 import com.example.android.PopularMovies.Data.Trailer;
 import com.example.android.PopularMovies.Utilities.MoviesUtil;
 import com.example.android.PopularMovies.Utilities.NetworkUtil;
@@ -169,10 +170,11 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             editor.putLong(favId.toString(),favId);
             editor.commit();
             ContentValues contentValues = new ContentValues();
-            contentValues.put(MovieFavoriteContract.MovieEntry.COLUMN_MOVIE_ID,favId);
-            contentValues.put(MovieFavoriteContract.MovieEntry.COLUMN_MOVIE_TITLE,movieTitle.getText().toString());
-            contentValues.put(MovieFavoriteContract.MovieEntry.COLUMN_POSTER_PATH,posterPath);
-            Uri uri = getContentResolver().insert(MovieFavoriteContract.MovieEntry.CONTENT_URI, contentValues);
+
+            contentValues.put(MoviesDatabase.MovieColumns.COLUMN_MOVIE_ID,favId);
+            contentValues.put(MoviesDatabase.MovieColumns.COLUMN_MOVIE_TITLE,movieTitle.getText().toString());
+            contentValues.put(MoviesDatabase.MovieColumns.COLUMN_POSTER_PATH,posterPath);
+            Uri uri = getContentResolver().insert(FavoriteProvider.Movie.withId(favId),contentValues);
             if(uri != null) {
                 Toast.makeText(getBaseContext(), movieTitle.getText().toString() + " added to Favorites", Toast.LENGTH_LONG).show();
             }
@@ -183,9 +185,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             SharedPreferences.Editor editor = favorite.edit();
             editor.remove(favId.toString());
             editor.commit();
-            Uri uri = MovieFavoriteContract.MovieEntry.CONTENT_URI;
-            uri = uri.buildUpon().appendPath(movieId).build();
-            int rowDeleted=getContentResolver().delete(uri, null, null);
+            Uri uri = FavoriteProvider.Movie.withId(favId);
+            int rowDeleted = getContentResolver().delete(FavoriteProvider.Movie.withId(favId),null,null);
             if(rowDeleted!=0) {
                 Toast.makeText(getBaseContext(), movieTitle.getText().toString() + " removed from Favorites", Toast.LENGTH_LONG).show();
             }
