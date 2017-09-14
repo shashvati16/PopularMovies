@@ -20,5 +20,7 @@ public class MovieFavoriteContract {
         public static final String COLUMN_MOVIE_ID = "movies_id";
         public static final String COLUMN_MOVIE_TITLE = "movie_title";
         public static final String COLUMN_POSTER_PATH = "poster_path";
+
     }
+
 }

@@ -5,10 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 
 import com.example.android.PopularMovies.Data.Movies;
 import com.squareup.picasso.Picasso;
+
+import java.util.Random;
 
 /**
  * Created by MCLAB on 4/21/2017.
@@ -18,16 +23,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     private static final String LOG_TAG = MovieAdapter.class.getSimpleName();
     private Movies[] mMoviesData=new Movies[20];
     private MovieAdapterOnClickHandler mClickHandler;
+    public MovieAdapterCallback mCallback ;
 
+    public interface MovieAdapterCallback{
+        public void animateViewsIn();
+    }
 
 
     public interface MovieAdapterOnClickHandler {
         void onClick(Movies movieClicked);
     }
 
-    public MovieAdapter(MovieAdapterOnClickHandler clickHandler,Movies[] moviesData){
+    public MovieAdapter(MovieAdapterOnClickHandler clickHandler,Movies[] moviesData, MovieAdapterCallback callback){
         mMoviesData=moviesData;
         mClickHandler=clickHandler;
+        mCallback = callback;
     }
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final ImageView iconView;
@@ -52,6 +62,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             LayoutInflater inflater=LayoutInflater.from(context);
             boolean shouldAttachToParentImmediately=false;
             View view=inflater.inflate(layoutIdForGrid,viewGroup,shouldAttachToParentImmediately);
+            mCallback.animateViewsIn();
             return new MovieAdapterViewHolder(view);
 
         }
@@ -73,4 +84,5 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             }
 
         }
+
 }

@@ -43,6 +43,7 @@
             android:name="com.example.android.PopularMovies.Data.MovieFavoriteProvider"
             android:authorities="com.example.android.PopularMovies"
             android:exported="false"/>
+
     </application>
 
 </manifest>

@@ -14,16 +14,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 
 import com.example.android.PopularMovies.Data.Movies;
 import com.example.android.PopularMovies.Utilities.MoviesUtil;
 import com.example.android.PopularMovies.Utilities.NetworkUtil;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Movies[]>,
-        MovieAdapter.MovieAdapterOnClickHandler  {
+        MovieAdapter.MovieAdapterOnClickHandler, MovieAdapter.MovieAdapterCallback {
     private RecyclerView mRecyclerView;
     private Movies[] mMoviesData;
     private Parcelable[] moviesList;
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Bundle bundleforLoader=null;
         int loaderId=MOVIE_LOADER_ID;
         getSupportLoaderManager().initLoader(loaderId,bundleforLoader,callback);
-
+        animateViewsIn();
     }
 
     @Override
@@ -121,10 +124,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<Movies[]> loader, Movies[] moviesdata) {
         mMoviesData=moviesdata;
-        mMovieAdapter=new MovieAdapter(MainActivity.this,moviesdata);
+        mMovieAdapter=new MovieAdapter(MainActivity.this,moviesdata, MainActivity.this);
         mRecyclerView.setAdapter(mMovieAdapter);
 
     }
+
 
     @Override
     public void onLoaderReset(Loader<Movies[]> loader) {
@@ -174,7 +178,43 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return super.onOptionsItemSelected(item);
 
     }
+    @Override
+    public void animateViewsIn() {
+        // setup random initial state
+        float maxWidthOffset = 2f * getResources().getDisplayMetrics().widthPixels;
+        float maxHeightOffset = 2f * getResources().getDisplayMetrics().heightPixels;
+        Interpolator interpolator =
+                AnimationUtils.loadInterpolator(getApplicationContext(), android.R.interpolator.linear_out_slow_in);
+        Random random = new Random();
+        int count = mRecyclerView.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View view = mRecyclerView.getChildAt(i);
+            view.setVisibility(View.VISIBLE);
+            view.setAlpha(0.85f);
+            float xOffset = random.nextFloat() * maxWidthOffset;
+            if (random.nextBoolean()) {
+                xOffset *= -1;
+            }
+            view.setTranslationX(xOffset);
 
+            float yOffset = random.nextFloat() * maxHeightOffset;
+            if (random.nextBoolean()) {
+                yOffset *= -1;
+            }
+            view.setTranslationY(yOffset);
+
+            // now animate them back into their natural position
+            view.animate()
+                    .translationY(0f)
+                    .translationX(0f)
+                    .alpha(1f)
+                    .setInterpolator(interpolator)
+                    .setDuration(1000)
+                    .start();
+
+        }
+
+    }
 
 }
 
